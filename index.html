@@ -343,6 +343,7 @@
       <textarea id="value" placeholder="What value would you bring as a partner?"></textarea>
 
       <button type="submit">Apply Now</button>
+      <div id="form-message" style="margin-top:15px; font-size:14px;"></div>
     </form>
   </section>
 
@@ -355,9 +356,9 @@
       If that excites you — apply.
     </p>
   </section>
-<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js"></script>
 
-  <script >
+  <script>
     const SUPABASE_URL = 'https://zmpnmozonofycyntsqih.supabase.co';
     const SUPABASE_ANON_KEY = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InptcG5tb3pvbm9meWN5bnRzcWloIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NzY1MjUwNTYsImV4cCI6MjA5MjEwMTA1Nn0.kZP6IM6ZljmcqVvDN0bZlBPxibcBEt_QFPW4yJPrj7c';
     const form = document.getElementById("apply-form");
@@ -384,11 +385,23 @@
           }
         ]);
 
+      const messageBox = document.getElementById("form-message");
+
       if (error) {
         console.error(error);
-        alert("Submission failed");
+
+        if (error.message.includes("duplicate")) {
+          messageBox.innerHTML = "⚠️ You have already applied.";
+          messageBox.style.color = "#ff5c5c";
+        } else {
+          messageBox.innerHTML = "❌ Submission failed. Try again.";
+          messageBox.style.color = "#ff5c5c";
+        }
+
       } else {
-        alert("Application submitted!");
+        messageBox.innerHTML = "✅ Application submitted successfully!";
+        messageBox.style.color = "#00ffd0";
+
         form.reset();
       }
     });
