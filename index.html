@@ -1,491 +1,1049 @@
 <!doctype html>
 <html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>AgriBioventures</title>
 
-<head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>AgriBioventures</title>
+    <link
+      href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600&family=Sora:wght@300;400;600&display=swap"
+      rel="stylesheet"
+    />
 
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600&display=swap" rel="stylesheet" />
+    <style>
+      :root {
+        --bg: #06070a;
+        --card: #0d1117;
+        --border: rgba(255, 255, 255, 0.08);
+        --text: #e6edf3;
+        --muted: #8b949e;
 
-  <style>
-    body {
-      margin: 0;
-      font-family: "Inter", sans-serif;
-      background: #0b0b0b;
-      color: #fff;
-    }
+        --c1: #00ffd0;
+        --c2: #7a5cff;
+        --c3: #ff7ad9;
+        --c4: #ffb86b;
+        --c5: #6cf2ff;
+      }
 
-    section {
-      max-width: 1000px;
-      margin: auto;
-      padding: 80px 20px;
-    }
+      body {
+        margin: 0;
+        font-family: "Sora", sans-serif;
+        background:
+          radial-gradient(
+            circle at 15% 10%,
+            rgba(122, 92, 255, 0.2),
+            transparent 40%
+          ),
+          radial-gradient(
+            circle at 85% 0%,
+            rgba(0, 255, 208, 0.18),
+            transparent 40%
+          ),
+          radial-gradient(
+            circle at 50% 80%,
+            rgba(255, 122, 217, 0.12),
+            transparent 40%
+          ),
+          var(--bg);
+        color: var(--text);
+        line-height: 1.6;
+      }
 
-    h1 {
-      font-size: 56px;
-    }
+      section {
+        max-width: 1100px;
+        margin: auto;
+        padding: 100px 24px;
+        position: relative;
+      }
 
-    h2 {
-      font-size: 36px;
-      margin-bottom: 10px;
-    }
+      section::after {
+        content: "";
+        position: absolute;
+        inset: 0;
+        background: radial-gradient(
+          circle at 50% 0%,
+          rgba(255, 255, 255, 0.03),
+          transparent 60%
+        );
+        pointer-events: none;
+      }
 
-    h3 {
-      font-size: 22px;
-      color: #ccc;
-      margin-bottom: 20px;
-    }
+      h1 {
+        font-family: "Space Grotesk", sans-serif;
+        font-size: 70px;
+        letter-spacing: -1.5px;
+        margin-bottom: 20px;
+      }
 
-    p {
-      color: #aaa;
-    }
+      h2 {
+        font-size: 36px;
+        margin-bottom: 10px;
+        font-family: "Space Grotesk";
+      }
 
-    .hero {
-      text-align: center;
-      padding-top: 120px;
-    }
+      h3 {
+        font-size: 18px;
+        color: var(--muted);
+        margin-bottom: 20px;
+        font-weight: 400;
+      }
 
-    .gradient {
-      background: linear-gradient(90deg, #00ffd0, #7a5cff);
-      -webkit-background-clip: text;
-      -webkit-text-fill-color: transparent;
-    }
+      p {
+        color: var(--muted);
+        max-width: 720px;
+      }
 
-    .card {
-      background: rgba(255, 255, 255, 0.03);
-      border: 1px solid rgba(255, 255, 255, 0.08);
-      backdrop-filter: blur(20px);
-      border-radius: 20px;
-      padding: 30px;
-      margin-top: 40px;
-    }
+      .hero {
+        text-align: center;
+        padding-top: 80px;
+      }
 
-    input,
-    textarea {
-      width: 100%;
-      padding: 12px;
-      margin: 10px 0;
-      border-radius: 10px;
-      border: none;
-      background: #111;
-      color: #fff;
-    }
+      .gradient {
+        color: var(--text);
+      }
 
-    .dd-wrap {
-      position: relative;
-      margin: 10px 0;
-      width: 97%;
-      box-sizing: border-box;
-    }
+      .badge {
+        display: inline-block;
+        padding: 6px 12px;
+        border-radius: 999px;
+        font-size: 12px;
+        background: rgba(255, 255, 255, 0.05);
+        border: 1px solid var(--border);
+        color: var(--muted);
+      }
 
-    .dd-trigger {
-      width: 100%;
-      padding: 12px 16px;
-      background: #111;
-      border: 1px solid rgba(255, 255, 255, 0.1);
-      border-radius: 10px;
-      color: #fff;
-      font-family: "Inter", sans-serif;
-      font-size: 14px;
-      cursor: pointer;
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      transition: background 0.2s, border-color 0.2s;
-      user-select: none;
-    }
+      .card {
+        background: linear-gradient(
+          145deg,
+          rgba(255, 255, 255, 0.04),
+          rgba(255, 255, 255, 0.01)
+        );
+        border: 1px solid var(--border);
+        border-radius: 18px;
+        padding: 32px;
+        margin-top: 40px;
+        backdrop-filter: blur(20px);
+        transition: 0.35s;
+        position: relative;
+        overflow: hidden;
+      }
 
-    .dd-trigger:hover {
-      background: #1a1a1a;
-      border-color: rgba(255, 255, 255, 0.2);
-    }
+      .card::before {
+        content: "";
+        position: absolute;
+        inset: 0;
+        background: linear-gradient(
+          120deg,
+          transparent,
+          rgba(122, 92, 255, 0.25),
+          transparent
+        );
+        opacity: 0;
+        transition: 0.4s;
+      }
 
-    .dd-trigger.open {
-      border-color: rgba(0, 255, 208, 0.45);
-      border-bottom-color: transparent;
-      border-radius: 10px 10px 0 0;
-      background: #161616;
-    }
+      .card:hover::before {
+        opacity: 1;
+      }
 
-    .dd-chevron {
-      transition: transform 0.2s;
-      opacity: 0.45;
-    }
+      .card:hover {
+        border: 1px solid rgba(122, 92, 255, 0.4);
+        transform: translateY(-6px) scale(1.01);
+      }
 
-    .open .dd-chevron {
-      transform: rotate(180deg);
-    }
+      input,
+      select,
+      textarea {
+        width: 100%;
+        padding: 12px;
+        margin: 10px 0;
+        border-radius: 10px;
+        border: 1px solid #1f2933;
+        background: #0b0f14;
+        color: #fff;
+        box-sizing: border-box;
+      }
 
-    .dd-menu {
-      position: absolute;
-      top: 100%;
-      left: 0;
-      width: 100%;
-      z-index: 50;
-      background: #111;
-      border: 1px solid rgba(0, 255, 208, 0.3);
-      border-top: none;
-      border-radius: 0 0 10px 10px;
-      overflow: hidden;
-      display: none;
-      padding: 4px 6px 6px;
-      box-sizing: border-box;
+      input:focus,
+      select:focus,
+      textarea:focus {
+        outline: none;
+        border-color: var(--c2);
+        box-shadow: 0 0 0 1px var(--c2);
+      }
 
-    }
+      /* custom dropdown from first code */
+      .dd-wrap {
+        position: relative;
+        margin: 10px 0;
+        width: 100%;
+        box-sizing: border-box;
+        z-index: 20;
+      }
 
-    .dd-menu.show {
-      display: block;
-    }
+      .dd-trigger {
+        width: 100%;
+        padding: 12px 16px;
+        background: #0b0f14;
+        border: 1px solid #1f2933;
+        border-radius: 10px;
+        color: #fff;
+        font-family: "Sora", sans-serif;
+        font-size: 14px;
+        cursor: pointer;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        transition:
+          background 0.2s,
+          border-color 0.2s;
+        user-select: none;
+        box-sizing: border-box;
+      }
 
-    .dd-item {
-      padding: 9px 12px;
-      margin-top: 3px;
-      font-size: 14px;
-      font-family: "Inter", sans-serif;
-      color: rgba(255, 255, 255, 0.6);
-      cursor: pointer;
-      border-radius: 8px;
-      display: flex;
-      align-items: center;
-      gap: 10px;
-      transition: background 0.15s, color 0.15s;
+      .dd-trigger:hover {
+        background: #11161d;
+        border-color: rgba(255, 255, 255, 0.2);
+      }
 
-    }
+      .dd-trigger.open {
+        border-color: rgba(0, 255, 208, 0.45);
+        border-bottom-color: transparent;
+        border-radius: 10px 10px 0 0;
+        background: #11161d;
+      }
 
-    .dd-item:hover {
-      background: rgba(255, 255, 255, 0.06);
-      color: #fff;
-    }
+      .dd-chevron {
+        transition: transform 0.2s;
+        opacity: 0.6;
+      }
 
-    .dd-item.active {
-      background: rgba(0, 255, 208, 0.07);
-      color: #00ffd0;
-      font-weight: 600;
-    }
+      .open .dd-chevron {
+        transform: rotate(180deg);
+      }
 
-    .dd-item.active::after {
-      content: '✓';
-      margin-left: auto;
-      font-size: 12px;
-    }
+      .dd-menu {
+        position: absolute;
+        top: 100%;
+        left: 0;
+        width: 100%;
+        z-index: 50;
+        background: #0b0f14;
+        border: 1px solid rgba(0, 255, 208, 0.3);
+        border-top: none;
+        border-radius: 0 0 10px 10px;
+        overflow: hidden;
+        display: none;
+        padding: 4px 6px 6px;
+        box-sizing: border-box;
+      }
 
-    .dd-dot {
-      width: 7px;
-      height: 7px;
-      border-radius: 50%;
-      flex-shrink: 0;
-    }
+      .dd-menu.show {
+        display: block;
+      }
 
-    button {
-      padding: 14px 24px;
-      border: none;
-      border-radius: 12px;
-      background: linear-gradient(90deg, #00ffd0, #7a5cff);
-      color: #000;
-      font-weight: 600;
-      cursor: pointer;
-    }
+      .dd-item {
+        padding: 9px 12px;
+        margin-top: 3px;
+        font-size: 14px;
+        font-family: "Sora", sans-serif;
+        color: rgba(255, 255, 255, 0.7);
+        cursor: pointer;
+        border-radius: 8px;
+        display: flex;
+        align-items: center;
+        gap: 10px;
+        transition:
+          background 0.15s,
+          color 0.15s;
+      }
 
-    .slider-label {
-      display: flex;
-      justify-content: space-between;
-      font-size: 14px;
-      color: #aaa;
-    }
+      .dd-item:hover {
+        background: rgba(255, 255, 255, 0.06);
+        color: #fff;
+      }
 
-    .result {
-      margin-top: 20px;
-      font-size: 22px;
-    }
+      .dd-item.active {
+        background: rgba(0, 255, 208, 0.07);
+        color: #00ffd0;
+        font-weight: 600;
+      }
 
-    .big {
-      font-size: 32px;
-      font-weight: 600;
-    }
+      .dd-item.active::after {
+        content: "✓";
+        margin-left: auto;
+        font-size: 12px;
+      }
 
-    .timeline {
-      border-left: 2px solid #333;
-      padding-left: 20px;
-    }
-  </style>
-</head>
+      .dd-dot {
+        width: 7px;
+        height: 7px;
+        border-radius: 50%;
+        flex-shrink: 0;
+      }
 
-<body>
-  <section class="hero">
-    <h1>
-      Build Unicorns.<br />
-      Own the Platform.<br />
-      <span class="gradient">Shape a $1T Future.</span>
-    </h1>
+      /* sliders */
+      input[type="range"] {
+        appearance: none;
+        height: 6px;
+        border-radius: 5px;
+        background: linear-gradient(
+          to right,
+          #7a5cff 0%,
+          #7a5cff var(--fill, 0%),
+          rgba(255, 255, 255, 0.15) var(--fill, 0%),
+          rgba(255, 255, 255, 0.15) 100%
+        );
+        position: relative;
+        z-index: 2;
+      }
 
-    <p>
-      Next-generation venture platform for agritech, biotech & life sciences.
-    </p>
-    <p style="font-size: 14px">⚠️ Long-term ambition. Not a guarantee.</p>
-  </section>
+      input[type="range"]::-webkit-slider-thumb {
+        appearance: none;
+        width: 16px;
+        height: 16px;
+        border-radius: 50%;
+        background: #7a5cff;
+        cursor: pointer;
+        position: relative;
+        z-index: 3;
+      }
 
-  <section>
-    <h2>💎 See What Your Ownership Could Become</h2>
-    <h3>
-      Even small equity stakes can become meaningful at scale. Explore your
-      potential outcomes.
-    </h3>
+      .slider-tooltip {
+        position: absolute;
+        top: -28px;
+        transform: translateX(-50%);
+        background: #111;
+        color: #fff;
+        font-size: 11px;
+        padding: 4px 6px;
+        border-radius: 6px;
+        border: 1px solid rgba(255, 255, 255, 0.15);
+        pointer-events: none;
+        opacity: 0;
+        transition: 0.2s;
+      }
 
-    <div class="card">
-      <h3>Partner Outcome Simulator</h3>
+      button {
+        padding: 14px 26px;
+        border: none;
+        border-radius: 10px;
+        background: #7a5cff;
+        color: #fff;
+        font-weight: 600;
+        cursor: pointer;
+        transition: 0.3s;
+      }
 
-      <!-- <label>Role</label>
-        <select id="role" onchange="setEquityRange()">
-          <option value="founder">Founding Partner</option>
-          <option value="core">Core Operator</option>
-          <option value="ecosystem">Ecosystem</option>
-          <option value="general">General</option>
-        </select> -->
+      button:hover {
+        background: #6a4be0;
+        transform: translateY(-2px) scale(1.02);
+      }
 
-      <div class="dd-wrap" id="roleDD">
-        <div class="dd-trigger" onclick="toggleDD()" tabindex="0">
-          <span id="roleDDVal">Founding Partner</span>
-          <svg class="dd-chevron" width="14" height="14" viewBox="0 0 14 14" fill="none">
-            <path d="M3 5l4 4 4-4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"
-              stroke-linejoin="round" />
-          </svg>
-        </div>
-        <div class="dd-menu" id="roleDDMenu">
-          <div class="dd-item active" onclick="pickRole('founder','Founding Partner',this)">
-            <div class="dd-dot" style="background:#00ffd0"></div>Founding Partner
-          </div>
-          <div class="dd-item" onclick="pickRole('core','Core Operator',this)">
-            <div class="dd-dot" style="background:#7a5cff"></div>Core Operator
-          </div>
-          <div class="dd-item" onclick="pickRole('ecosystem','Ecosystem',this)">
-            <div class="dd-dot" style="background:#ff5ca8"></div>Ecosystem
-          </div>
-          <div class="dd-item" onclick="pickRole('general','General',this)">
-            <div class="dd-dot" style="background:#888"></div>General
-          </div>
-        </div>
-      </div>
+      .metric {
+        font-size: 32px;
+        font-weight: 600;
+        margin-top: 10px;
+        color: #ffffff;
+      }
 
-      <div class="slider-label">
-        <span>Equity %</span><span id="eqVal">0.5%</span>
-      </div>
-      <input type="range" id="equity" min="0.01" max="3" step="0.01" value="0.5" oninput="update()" />
+      .sub {
+        font-size: 13px;
+        color: #6e7681;
+      }
 
-      <div class="slider-label">
-        <span>Platform Valuation</span><span id="valVal">$1T</span>
-      </div>
-      <input type="range" id="valuation" min="1e8" max="1e12" step="1e8" value="1e12" oninput="update()" />
+      .grid {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 40px;
+        margin-top: 40px;
+      }
 
-      <div class="slider-label">
-        <span>Timeline (Year)</span><span id="yearVal">2033</span>
-      </div>
-      <input type="range" id="year" min="2026" max="2035" value="2033" oninput="update()" />
+      .step-title {
+        font-weight: 600;
+        color: #fff;
+      }
 
-      <label>Annual Platform Profit ($)</label>
-      <input type="number" id="profit" value="50000000" oninput="update()" />
+      .step-title span {
+        color: #7a5cff;
+      }
 
-      <div class="result">
-        <div class="big" id="equityResult">$0</div>
-        <div>Estimated Equity Value</div>
+      .timeline {
+        border-left: 2px solid rgba(255, 255, 255, 0.1);
+        padding-left: 20px;
+      }
 
-        <br />
+      .timeline p {
+        margin: 16px 0;
+        position: relative;
+      }
 
-        <div class="big" id="revResult">$0</div>
-        <div>Estimated Annual Revenue Share</div>
-      </div>
-    </div>
+      .timeline p::before {
+        content: "";
+        position: absolute;
+        left: -28px;
+        top: 6px;
+        width: 10px;
+        height: 10px;
+        border-radius: 50%;
+        background: #7a5cff;
+      }
 
-    <p style="font-size: 14px; margin-top: 10px">
-      These projections are illustrative, not guarantees. Outcomes depend on
-      execution, ownership, and platform success.
-    </p>
-  </section>
+      #particles {
+        position: fixed;
+        inset: 0;
+        z-index: 0;
+        pointer-events: none;
+      }
 
-  <section>
-    <h2>📈 A Realistic Path to IPO</h2>
-    <h3>Built step-by-step from 2026 to long-term public market readiness</h3>
+      body > *:not(canvas) {
+        position: relative;
+        z-index: 1;
+      }
 
-    <div class="timeline">
-      <p><b>2026–27:</b> Launch platform & first startups</p>
-      <p><b>2028–29:</b> Breakout companies emerge</p>
-      <p><b>2030–32:</b> Scale portfolio & generate exits</p>
-      <p><b>2033+:</b> IPO-ready global platform</p>
-    </div>
-  </section>
+      .vision {
+        margin-top: 30px;
+      }
 
-  <section>
-    <h2>💎 What This Could Mean for You</h2>
-    <h3>Illustrative outcomes if the platform reaches large-scale success</h3>
+      .vision-bar {
+        position: relative;
+        height: 6px;
+        border-radius: 6px;
+        background: rgba(255, 255, 255, 0.08);
+        overflow: hidden;
+        margin: 30px 0 20px 0;
+      }
 
-    <p>
-      0.01% → $100M<br />
-      0.05% → $500M<br />
-      0.1% → $1B
-    </p>
+      .vision-bar::before {
+        content: "";
+        position: absolute;
+        inset: 0;
+        background: rgba(122, 92, 255, 0.4);
+        width: 65%;
+        opacity: 0.5;
+      }
 
-    <p style="font-size: 14px">Illustrative only. Not guaranteed.</p>
-  </section>
+      .vision-bar::after {
+        content: "";
+        position: absolute;
+        inset: 0;
+        background: linear-gradient(
+          90deg,
+          rgba(255, 255, 255, 0.12),
+          transparent
+        );
+        opacity: 0.15;
+      }
 
-  <section>
-    <h2>📝 Apply to Become a Partner</h2>
-    <h3>
-      Join as an owner-operator and help build the next generation of
-      deep-tech companies
-    </h3>
+      .vision-dots {
+        position: relative;
+        height: 0;
+        pointer-events: none;
+      }
 
-    <form id="apply-form">
-      <input id="name" placeholder="Full Name" required />
-      <input id="email" placeholder="Email" required />
-      <input id="portfolio" placeholder="LinkedIn / Portfolio" />
+      .vision-dots span {
+        position: absolute;
+        top: -5px;
+        width: 10px;
+        height: 10px;
+        border-radius: 50%;
+        background: #0b0f14;
+        border: 2px solid rgba(255, 255, 255, 0.3);
+        transition: 0.4s;
+      }
 
-      <textarea id="why" placeholder="Why do you want to join AgriBioventures?"></textarea>
-      <textarea id="value" placeholder="What value would you bring as a partner?"></textarea>
+      .vision-dots span.active {
+        background: #7a5cff;
+        border-color: transparent;
+        box-shadow: 0 0 6px rgba(122, 92, 255, 0.6);
+      }
 
-      <button type="submit">Apply Now</button>
-      <div id="form-message" style="margin-top:15px; font-size:14px;"></div>
-    </form>
-  </section>
+      .vision-dots span:nth-child(1) {
+        left: 0%;
+      }
+      .vision-dots span:nth-child(2) {
+        left: 33%;
+      }
+      .vision-dots span:nth-child(3) {
+        left: 66%;
+      }
+      .vision-dots span:nth-child(4) {
+        left: 100%;
+        transform: translateX(-100%);
+      }
 
-  <section>
-    <h2>🔗 Final Note</h2>
-    <p>
-      This is not a traditional job.<br />
-      It’s an opportunity to build, own, and participate in long-term value
-      creation.<br /><br />
-      If that excites you — apply.
-    </p>
-  </section>
-  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js"></script>
+      .vision-points {
+        display: flex;
+        justify-content: space-between;
+        font-size: 12px;
+        color: #8b949e;
+      }
 
-  <script>
-    const SUPABASE_URL = 'https://zmpnmozonofycyntsqih.supabase.co';
-    const SUPABASE_ANON_KEY = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InptcG5tb3pvbm9meWN5bnRzcWloIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NzY1MjUwNTYsImV4cCI6MjA5MjEwMTA1Nn0.kZP6IM6ZljmcqVvDN0bZlBPxibcBEt_QFPW4yJPrj7c';
-    const form = document.getElementById("apply-form");
-    console.log("FORM:", form);
+      .vision-points div {
+        text-align: center;
+      }
 
-    form.addEventListener("submit", async (e) => {
-      e.preventDefault();
+      .vision-points span {
+        display: block;
+        margin-top: 4px;
+      }
 
-      const name = document.getElementById("name").value;
-      const email = document.getElementById("email").value;
-      const portfolio = document.getElementById("portfolio").value;
-      const why = document.getElementById("why").value;
-      const value = document.getElementById("value").value;
+      .vision-points div:last-child span {
+        color: #7a5cff;
+        font-weight: 600;
+      }
 
-      const { data, error } = await supabaseClient
-        .from("applications") // 
-        .insert([
-          {
-            name,
-            email,
-            portfolio,
-            why,
-            value
-          }
-        ]);
+      .hero-sub {
+        font-size: 20px;
+        max-width: 800px;
+        margin: 0 auto;
+        color: yellowgreen;
+      }
 
-      const messageBox = document.getElementById("form-message");
+      .hero-sub2 {
+        font-size: 28px;
+        max-width: 800px;
+        margin: 0 auto;
+        color: white;
+      }
 
-      if (error) {
-        console.error(error);
-
-        if (error.message.includes("duplicate")) {
-          messageBox.innerHTML = "⚠️ You have already applied.";
-          messageBox.style.color = "#ff5c5c";
-        } else {
-          messageBox.innerHTML = "❌ Submission failed. Try again.";
-          messageBox.style.color = "#ff5c5c";
+      @media (max-width: 768px) {
+        h1 {
+          font-size: 44px;
+          line-height: 1.15;
         }
 
-      } else {
-        messageBox.innerHTML = "✅ Application submitted successfully!";
-        messageBox.style.color = "#00ffd0";
+        h2 {
+          font-size: 28px;
+        }
 
-        form.reset();
+        .grid {
+          grid-template-columns: 1fr;
+          gap: 24px;
+        }
+
+        section {
+          padding: 70px 20px;
+        }
+
+        .hero {
+          padding-top: 90px;
+        }
+
+        .hero-sub {
+          font-size: 16px;
+        }
       }
-    });
-    const supabaseClient = supabase.createClient(SUPABASE_URL, SUPABASE_ANON_KEY);
-    function setEquityRange() {
-      let role = document.getElementById("role").value;
-      let eq = document.getElementById("equity");
 
-      if (role === "founder") {
-        eq.min = 1;
-        eq.max = 3;
-        eq.value = 1.5;
-      } else if (role === "core") {
-        eq.min = 0.2;
-        eq.max = 0.8;
-        eq.value = 0.4;
-      } else if (role === "ecosystem") {
-        eq.min = 0.1;
-        eq.max = 0.4;
-        eq.value = 0.2;
-      } else {
-        eq.min = 0.05;
-        eq.max = 0.15;
-        eq.value = 0.08;
+      .logo {
+        height: 200px;
+        margin-bottom: 15px;
+      }
+    </style>
+  </head>
+
+  <body>
+    <canvas id="particles"></canvas>
+
+    <section class="hero">
+     <div>
+       <img src="./logo.png" class="logo" alt="">
+     </div>
+      <div class="badge">Venture Platform • Deep Tech</div>
+
+      <h1>
+        <span class="gradient">AgriBioVentures</span><br />
+       
+      </h1>
+
+      <p class="hero-sub2">
+        Building Enduring Science-Driven Companies At Global Scale
+      </p>
+
+      <p class="hero-sub" style="margin-top: 12px;">
+        Partner with exceptional operators to build and scale companies across
+        agriculture, biology, and applied science.
+      </p>
+    </section>
+
+    <section>
+      <h2>Why This Exists</h2>
+      <h3>The current venture model is not designed for deep-tech</h3>
+
+      <p>
+        Scientific innovation requires long timelines, operational depth, and
+        aligned ownership. Traditional venture capital often optimizes for speed
+        over substance.
+      </p>
+
+      <p>
+        We are building a platform combining capital, company-building, and
+        domain expertise — purpose-built for complex, high-impact sectors.
+      </p>
+    </section>
+
+    <section>
+      <h2>How It Works</h2>
+
+      <div class="grid">
+        <div class="card">
+          <h3 class="step-title"><span>01</span> — Identify</h3>
+          <p>
+            Source high-potential opportunities across science-driven domains.
+          </p>
+        </div>
+
+        <div class="card">
+          <h3 class="step-title"><span>02</span> — Build</h3>
+          <p>Partner with operators to form strong technical companies.</p>
+        </div>
+
+        <div class="card">
+          <h3 class="step-title"><span>03</span> — Scale</h3>
+          <p>Provide capital, hiring, and strategic platform support.</p>
+        </div>
+
+        <div class="card">
+          <h3 class="step-title"><span>04</span> — Exit</h3>
+          <p>Create long-term value through liquidity events.</p>
+        </div>
+      </div>
+    </section>
+
+    <section>
+      <h2>Partner Economics</h2>
+      <h3>Aligned ownership over long-term outcomes</h3>
+
+      <p style="max-width: 650px; margin-top: 10px">
+        We are building toward a long-term vision of a multi-decade, global
+        platform — with the potential to reach trillion-dollar scale if
+        execution, markets, and time align.
+      </p>
+
+      <p style="font-size: 13px; color: #6e7681">
+        This is an ambitious vision, not a guarantee.
+      </p>
+
+      <div class="vision">
+        <div class="vision-bar"></div>
+        <div class="vision-dots">
+          <span></span>
+          <span></span>
+          <span></span>
+          <span></span>
+        </div>
+        <div class="vision-points">
+          <div><strong>2026</strong><span>$1B</span></div>
+          <div><strong>2030</strong><span>$20B</span></div>
+          <div><strong>2033</strong><span>$150B</span></div>
+          <div><strong>2036</strong><span>$1T+</span></div>
+        </div>
+      </div>
+
+      <div class="card">
+        <label>Role</label>
+
+        <div class="dd-wrap" id="roleDD">
+          <div class="dd-trigger" onclick="toggleDD()" tabindex="0">
+            <span id="roleDDVal">Founding Partner</span>
+            <svg
+              class="dd-chevron"
+              width="14"
+              height="14"
+              viewBox="0 0 14 14"
+              fill="none"
+            >
+              <path
+                d="M3 5l4 4 4-4"
+                stroke="currentColor"
+                stroke-width="1.5"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+              />
+            </svg>
+          </div>
+
+          <div class="dd-menu" id="roleDDMenu">
+            <div
+              class="dd-item active"
+              onclick="pickRole('founder', 'Founding Partner', this)"
+            >
+              <div class="dd-dot" style="background: #00ffd0"></div>
+              Founding Partner
+            </div>
+            <div
+              class="dd-item"
+              onclick="pickRole('core', 'Core Operator', this)"
+            >
+              <div class="dd-dot" style="background: #7a5cff"></div>
+              Core Operator
+            </div>
+            <div
+              class="dd-item"
+              onclick="pickRole('ecosystem', 'Ecosystem Partner', this)"
+            >
+              <div class="dd-dot" style="background: #ff7ad9"></div>
+              Ecosystem Partner
+            </div>
+            <div class="dd-item" onclick="pickRole('general', 'General', this)">
+              <div class="dd-dot" style="background: #888"></div>
+              General
+            </div>
+          </div>
+        </div>
+
+        <label>Equity (%)</label>
+        <input
+          type="range"
+          id="equity"
+          min="1"
+          max="3"
+          step="0.01"
+          value="1.5"
+          oninput="update()"
+        />
+
+        <label>Platform Valuation ($)</label>
+        <input
+          type="range"
+          id="valuation"
+          min="100000000"
+          max="1000000000000"
+          step="100000000"
+          value="100000000000"
+          oninput="update()"
+        />
+
+        <label>Annual Profit ($)</label>
+        <input type="number" id="profit" value="20000000" oninput="update()" />
+
+        <div class="metric" id="equityResult"></div>
+        <div class="sub">Estimated Equity Value (fully diluted)</div>
+
+        <div class="metric" id="revResult"></div>
+        <div class="sub">Estimated Annual Distribution</div>
+
+        <div class="sub" style="margin-top: 15px">
+          Estimates are directional and depend on dilution, execution, and time
+          horizon.
+        </div>
+      </div>
+    </section>
+
+    <section>
+      <h2>📈 A Realistic Path to IPO</h2>
+      <h3>Built step-by-step from 2026 to long-term public market readiness</h3>
+
+      <div class="timeline">
+        <p><b>2026–27:</b> Launch platform & first startups</p>
+        <p><b>2028–29:</b> Breakout companies emerge</p>
+        <p><b>2030–32:</b> Scale portfolio & generate exits</p>
+        <p><b>2033+:</b> IPO-ready global platform</p>
+      </div>
+    </section>
+
+    <section>
+      <h2>📝 Apply to Become a Partner</h2>
+      <h3>
+        Join as an owner-operator and help build the next generation of
+        deep-tech companies
+      </h3>
+
+      <form id="apply-form">
+        <input id="name" placeholder="Full Name" required />
+        <input id="email" placeholder="Email" required />
+        <input id="portfolio" placeholder="LinkedIn / Portfolio" />
+
+        <textarea
+          id="why"
+          placeholder="Why do you want to join AgriBioventures?"
+        ></textarea>
+        <textarea
+          id="value"
+          placeholder="What value would you bring as a partner?"
+        ></textarea>
+
+        <button type="submit">Apply Now</button>
+        <div id="form-message" style="margin-top: 15px; font-size: 14px"></div>
+      </form>
+    </section>
+
+    <section>
+      <p>
+        This is a long-term effort to build meaningful companies in sectors that
+        matter.
+      </p>
+
+      <p>
+        If you are interested in building — not just participating — we should
+        talk.
+      </p>
+    </section>
+
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js"></script>
+
+    <script>
+      const SUPABASE_URL = "https://zmpnmozonofycyntsqih.supabase.co";
+      const SUPABASE_ANON_KEY =
+        "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InptcG5tb3pvbm9meWN5bnRzcWloIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NzY1MjUwNTYsImV4cCI6MjA5MjEwMTA1Nn0.kZP6IM6ZljmcqVvDN0bZlBPxibcBEt_QFPW4yJPrj7c";
+
+      const supabaseClient = supabase.createClient(
+        SUPABASE_URL,
+        SUPABASE_ANON_KEY,
+      );
+
+      const form = document.getElementById("apply-form");
+
+      if (form) {
+        form.addEventListener("submit", async (e) => {
+          e.preventDefault();
+
+          const name = document.getElementById("name").value.trim();
+          const email = document.getElementById("email").value.trim();
+          const portfolio = document.getElementById("portfolio").value.trim();
+          const why = document.getElementById("why").value.trim();
+          const value = document.getElementById("value").value.trim();
+
+          const messageBox = document.getElementById("form-message");
+          messageBox.innerHTML = "Submitting...";
+          messageBox.style.color = "#8b949e";
+
+          const { error } = await supabaseClient.from("applications").insert([
+            {
+              name,
+              email,
+              portfolio,
+              why,
+              value,
+            },
+          ]);
+
+          if (error) {
+            console.error(error);
+
+            if (
+              error.message &&
+              error.message.toLowerCase().includes("duplicate")
+            ) {
+              messageBox.innerHTML = "⚠️ You have already applied.";
+              messageBox.style.color = "#ff5c5c";
+            } else {
+              messageBox.innerHTML = "❌ Submission failed. Try again.";
+              messageBox.style.color = "#ff5c5c";
+            }
+          } else {
+            messageBox.innerHTML = "✅ Application submitted successfully!";
+            messageBox.style.color = "#00ffd0";
+            form.reset();
+          }
+        });
+      }
+
+      function setEquityRange(role) {
+        const eq = document.getElementById("equity");
+
+        if (role === "founder") {
+          eq.min = 1;
+          eq.max = 3;
+          eq.value = 1.5;
+        } else if (role === "core") {
+          eq.min = 0.2;
+          eq.max = 0.8;
+          eq.value = 0.4;
+        } else if (role === "ecosystem") {
+          eq.min = 0.1;
+          eq.max = 0.4;
+          eq.value = 0.2;
+        } else {
+          eq.min = 0.05;
+          eq.max = 0.15;
+          eq.value = 0.08;
+        }
+
+        update();
+      }
+
+      function toggleDD() {
+        const menu = document.getElementById("roleDDMenu");
+        const trigger = document.querySelector("#roleDD .dd-trigger");
+        const isOpen = menu.classList.contains("show");
+
+        menu.classList.toggle("show", !isOpen);
+        trigger.classList.toggle("open", !isOpen);
+      }
+
+      function pickRole(role, label, el) {
+        document.getElementById("roleDDVal").textContent = label;
+        document
+          .querySelectorAll("#roleDDMenu .dd-item")
+          .forEach((i) => i.classList.remove("active"));
+        el.classList.add("active");
+        document.getElementById("roleDDMenu").classList.remove("show");
+        document.querySelector("#roleDD .dd-trigger").classList.remove("open");
+
+        setEquityRange(role);
+      }
+
+      document.addEventListener("click", (e) => {
+        if (!e.target.closest("#roleDD")) {
+          document.getElementById("roleDDMenu").classList.remove("show");
+          document
+            .querySelector("#roleDD .dd-trigger")
+            .classList.remove("open");
+        }
+      });
+
+      function update() {
+        let eqEl = document.getElementById("equity");
+        let valEl = document.getElementById("valuation");
+
+        function setFill(el) {
+          let percent = ((el.value - el.min) / (el.max - el.min)) * 100;
+          el.style.setProperty("--fill", percent + "%");
+        }
+        setFill(eqEl);
+        setFill(valEl);
+
+        function updateTooltip(el) {
+          let tooltip = el.nextElementSibling;
+
+          if (!tooltip || !tooltip.classList.contains("slider-tooltip")) {
+            tooltip = document.createElement("div");
+            tooltip.className = "slider-tooltip";
+            el.parentNode.insertBefore(tooltip, el.nextSibling);
+          }
+
+          let percent = (el.value - el.min) / (el.max - el.min);
+          let pos = percent * el.offsetWidth;
+
+          tooltip.style.left = pos + "px";
+          tooltip.style.opacity = 1;
+          tooltip.innerText =
+            el.id === "equity"
+              ? el.value + "%"
+              : "$" + Math.round(el.value / 1e9) + "B";
+        }
+
+        updateTooltip(eqEl);
+        updateTooltip(valEl);
+
+        let eq = parseFloat(document.getElementById("equity").value);
+        let val = parseFloat(document.getElementById("valuation").value);
+        let profit = parseFloat(document.getElementById("profit").value);
+
+        let equityVal = (eq / 100) * val * 0.6;
+        let rev = (eq / 100) * 0.15 * profit;
+
+        document.getElementById("equityResult").innerText =
+          "$" + Math.round(equityVal).toLocaleString();
+        document.getElementById("revResult").innerText =
+          "$" + Math.round(rev).toLocaleString();
       }
 
       update();
-    }
 
-    function update() {
-      let eq = parseFloat(document.getElementById("equity").value);
-      let val = parseFloat(document.getElementById("valuation").value);
-      let yr = parseInt(document.getElementById("year").value);
-      let profit = parseFloat(document.getElementById("profit").value);
+      // PARTICLE SYSTEM
+      const canvas = document.getElementById("particles");
+      const ctx = canvas.getContext("2d");
+      let particles = [];
 
-      let growth = (yr - 2026) / 7;
-      if (growth < 0) growth = 0;
-      if (growth > 1) growth = 1;
-
-      let adjVal = val * growth;
-      let equityVal = (eq / 100) * adjVal;
-      let rev = (eq / 100) * 0.2 * profit * growth;
-
-      document.getElementById("eqVal").innerText = eq + "%";
-      document.getElementById("valVal").innerText = "$" + val / 1e9 + "B";
-      document.getElementById("yearVal").innerText = yr;
-
-      document.getElementById("equityResult").innerText =
-        "$" + Math.round(equityVal).toLocaleString();
-      document.getElementById("revResult").innerText =
-        "$" + Math.round(rev).toLocaleString();
-    }
-    update();
-    function toggleDD() {
-      const menu = document.getElementById('roleDDMenu');
-      const trigger = document.querySelector('#roleDD .dd-trigger');
-      const isOpen = menu.classList.contains('show');
-      menu.classList.toggle('show', !isOpen);
-      trigger.classList.toggle('open', !isOpen);
-    }
-
-    function pickRole(role, label, el) {
-      document.getElementById('roleDDVal').textContent = label;
-      document.querySelectorAll('#roleDDMenu .dd-item').forEach(i => i.classList.remove('active'));
-      el.classList.add('active');
-      document.getElementById('roleDDMenu').classList.remove('show');
-      document.querySelector('#roleDD .dd-trigger').classList.remove('open');
-
-      const eq = document.getElementById("equity");
-      if (role === "founder") { eq.min = 1; eq.max = 3; eq.value = 1.5; }
-      else if (role === "core") { eq.min = 0.2; eq.max = 0.8; eq.value = 0.4; }
-      else if (role === "ecosystem") { eq.min = 0.1; eq.max = 0.4; eq.value = 0.2; }
-      else { eq.min = 0.05; eq.max = 0.15; eq.value = 0.08; }
-      update(); // your existing function
-    }
-
-    // close on outside click
-    document.addEventListener('click', e => {
-      if (!e.target.closest('#roleDD')) {
-        document.getElementById('roleDDMenu').classList.remove('show');
-        document.querySelector('#roleDD .dd-trigger').classList.remove('open');
+      function resize() {
+        canvas.width = window.innerWidth;
+        canvas.height = window.innerHeight;
       }
-    });
-  </script>
-</body>
+      window.addEventListener("resize", resize);
+      resize();
 
+      function createParticles() {
+        particles = [];
+        for (let i = 0; i < 120; i++) {
+          particles.push({
+            x: Math.random() * canvas.width,
+            y: Math.random() * canvas.height,
+            vx: (Math.random() - 0.5) * 0.6,
+            vy: (Math.random() - 0.5) * 0.6,
+            size: Math.random() * 2 + 0.5,
+          });
+        }
+      }
+
+      function draw() {
+        ctx.clearRect(0, 0, canvas.width, canvas.height);
+
+        for (let p of particles) {
+          p.x += p.vx;
+          p.y += p.vy;
+
+          if (p.x < 0 || p.x > canvas.width) p.vx *= -1;
+          if (p.y < 0 || p.y > canvas.height) p.vy *= -1;
+
+          const gradient = ctx.createRadialGradient(p.x, p.y, 0, p.x, p.y, 6);
+          gradient.addColorStop(0, "rgba(122,92,255,0.8)");
+          gradient.addColorStop(1, "rgba(0,255,208,0)");
+
+          ctx.fillStyle = gradient;
+          ctx.beginPath();
+          ctx.arc(p.x, p.y, p.size, 0, Math.PI * 2);
+          ctx.fill();
+        }
+
+        for (let i = 0; i < particles.length; i++) {
+          for (let j = i + 1; j < particles.length; j++) {
+            let dx = particles[i].x - particles[j].x;
+            let dy = particles[i].y - particles[j].y;
+            let dist = Math.sqrt(dx * dx + dy * dy);
+
+            if (dist < 120) {
+              ctx.strokeStyle = "rgba(122,92,255," + (1 - dist / 120) + ")";
+              ctx.lineWidth = 0.5;
+              ctx.beginPath();
+              ctx.moveTo(particles[i].x, particles[i].y);
+              ctx.lineTo(particles[j].x, particles[j].y);
+              ctx.stroke();
+            }
+          }
+        }
+
+        requestAnimationFrame(draw);
+      }
+
+      function updateDots() {
+        const eq = parseFloat(document.getElementById("equity").value);
+        const dots = document.querySelectorAll(".vision-dots span");
+
+        dots.forEach((d) => d.classList.remove("active"));
+
+        if (eq >= 0.1) dots[0].classList.add("active");
+        if (eq >= 0.5) dots[1].classList.add("active");
+        if (eq >= 1) dots[2].classList.add("active");
+        if (eq >= 2) dots[3].classList.add("active");
+      }
+
+      function handleScroll() {
+        const section = document.querySelector(".vision");
+        if (!section) return;
+
+        const rect = section.getBoundingClientRect();
+
+        if (rect.top < window.innerHeight * 0.75) {
+          document.querySelectorAll(".vision-dots span").forEach((dot, i) => {
+            setTimeout(() => dot.classList.add("active"), i * 200);
+          });
+          window.removeEventListener("scroll", handleScroll);
+        }
+      }
+
+      window.addEventListener("scroll", handleScroll);
+
+      const originalUpdate = update;
+      update = function () {
+        originalUpdate();
+        updateDots();
+      };
+
+      createParticles();
+      draw();
+      setEquityRange("founder");
+    </script>
+  </body>
 </html>
